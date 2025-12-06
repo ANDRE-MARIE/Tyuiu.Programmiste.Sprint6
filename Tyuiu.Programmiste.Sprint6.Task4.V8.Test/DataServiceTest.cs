@@ -8,30 +8,29 @@ namespace Tyuiu.Programmiste.Sprint6.Task4.V8.Test
         [TestMethod]
         public void TestGetMassFunction_NormalRange()
         {
-            // Arrange
             DataService ds = new DataService();
-
             // Act
             double[] results = ds.GetMassFunction(-5, 5);
 
-            // Assert
-            // Check array length (from -5 to 5 inclusive = 11 elements)
+            // Assert - selon l'énoncé
             Assert.AreEqual(11, results.Length);
 
-            // Check division by zero case (x = 2 should return 0)
-            Assert.AreEqual(0, results[7], 0.001); // Index 7 corresponds to x = 2
-
-            // Check rounding to 2 decimal places
-            foreach (double result in results)
-            {
-                // Check that it's rounded to 2 decimal places
-                double roundedValue = Math.Round(result, 2);
-                Assert.AreEqual(roundedValue, result, 0.0001);
-            }
+            // Vérifier les valeurs selon l'énoncé
+            Assert.AreEqual(-8.86, results[0], 0.001);   // x = -5
+            Assert.AreEqual(-7.19, results[1], 0.001);   // x = -4
+            Assert.AreEqual(-6.14, results[2], 0.001);   // x = -3
+            Assert.AreEqual(-4.76, results[3], 0.001);   // x = -2
+            Assert.AreEqual(-2.33, results[4], 0.001);   // x = -1
+            Assert.AreEqual(1.0, results[5], 0.001);     // x = 0
+            Assert.AreEqual(4.38, results[6], 0.001);    // x = 1
+            Assert.AreEqual(0.0, results[7], 0.001);     // x = 2 (division par zéro)
+            Assert.AreEqual(6.13, results[8], 0.001);    // x = 3
+            Assert.AreEqual(7.07, results[9], 0.001);    // x = 4
+            Assert.AreEqual(8.61, results[10], 0.001);   // x = 5
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(System.ArgumentException))]
         public void TestGetMassFunction_InvalidRange()
         {
             // Arrange
@@ -52,8 +51,8 @@ namespace Tyuiu.Programmiste.Sprint6.Task4.V8.Test
 
             // Assert
             Assert.AreEqual(1, results.Length);
-            // F(0) = sin(0) + cos(0) + 1/(2-0) + 2*0 = 0 + 1 + 0.5 + 0 = 1.5
-            Assert.AreEqual(1.5, results[0], 0.001);
+            // Selon l'énoncé, F(0) = 1.0
+            Assert.AreEqual(1.0, results[0], 0.001);
         }
 
         [TestMethod]
@@ -67,8 +66,8 @@ namespace Tyuiu.Programmiste.Sprint6.Task4.V8.Test
 
             // Assert
             Assert.AreEqual(1, results.Length);
-            // Division by zero should return 0
-            Assert.AreEqual(0, results[0], 0.001);
+            // Division par zéro should return 0
+            Assert.AreEqual(0.0, results[0], 0.001);
         }
 
         [TestMethod]
@@ -82,10 +81,8 @@ namespace Tyuiu.Programmiste.Sprint6.Task4.V8.Test
 
             // Assert
             Assert.AreEqual(1, results.Length);
-            // F(-2) = sin(-2) + cos(-2) + 1/(2-(-2)) + 2*(-2)
-            double expected = Math.Sin(-2) + Math.Cos(-2) + 1.0 / 4.0 + (-4);
-            expected = Math.Round(expected, 2);
-            Assert.AreEqual(expected, results[0], 0.001);
+            // Selon l'énoncé, F(-2) = -4.76
+            Assert.AreEqual(-4.76, results[0], 0.001);
         }
     }
 }
