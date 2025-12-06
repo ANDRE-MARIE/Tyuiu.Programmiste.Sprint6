@@ -16,124 +16,55 @@ namespace Tyuiu.Programmiste.Sprint6.Task5.V4.Lib
             if (!File.Exists(path))
                 throw new FileNotFoundException($"File not found: {path}");
 
-            try
+            List<double> numbers = new List<double>();
+            string[] lines = File.ReadAllLines(path);
+
+            foreach (string line in lines)
             {
-                // Read all lines from file
-                string[] lines = File.ReadAllLines(path);
+                if (string.IsNullOrWhiteSpace(line))
+                    continue;
 
-                // Filter out empty lines and whitespace
-                var validLines = lines
-                    .Where(line => !string.IsNullOrWhiteSpace(line))
-                    .Select(line => line.Trim())
-                    .ToArray();
+                string normalized = NormalizeNumber(line.Trim());
 
-                // Initialize result array
-                double[] result = new double[validLines.Length];
-
-                for (int i = 0; i < validLines.Length; i++)
+                if (double.TryParse(normalized, NumberStyles.Float, CultureInfo.InvariantCulture, out double number))
                 {
-                    string line = validLines[i];
-
-                    // Try multiple parsing strategies for number format flexibility
-                    if (TryParseDouble(line, out double value))
-                    {
-                        // Round to 3 decimal places using MidpointRounding.AwayFromZero
-                        // This ensures 1.2345 rounds to 1.235 (not 1.234)
-                        result[i] = Math.Round(value, 3, MidpointRounding.AwayFromZero);
-                    }
-                    else
-                    {
-                        throw new FormatException($"Invalid number format in line {i + 1}: '{line}'");
-                    }
+                    // Arrondi à 3 décimales avec la règle AwayFromZero
+                    double rounded = Math.Round(number, 3, MidpointRounding.AwayFromZero);
+                    numbers.Add(rounded);
                 }
+                else
+                {
+                    throw new FormatException($"Invalid number format in line: {line}");
+                }
+            }
 
-                return result;
-            }
-            catch (Exception ex) when (!(ex is FileNotFoundException) && !(ex is FormatException))
-            {
-                throw new Exception($"Error reading file {path}: {ex.Message}", ex);
-            }
+            return numbers.ToArray();
         }
 
-        /// <summary>
-        /// Tries to parse a double using multiple culture formats
-        /// </summary>
-        private bool TryParseDouble(string input, out double result)
-        {
-            result = 0;
-
-            // Normalize input: remove spaces (thousands separators) and handle different decimal separators
-            string normalized = NormalizeNumber(input);
-
-            // Try parsing with invariant culture
-            if (double.TryParse(normalized, NumberStyles.Float, CultureInfo.InvariantCulture, out result))
-                return true;
-
-            // Try with current culture
-            if (double.TryParse(normalized, NumberStyles.Float, CultureInfo.CurrentCulture, out result))
-                return true;
-
-            // Try with comma as decimal separator (common in some European cultures)
-            normalized = normalized.Replace(",", ".");
-            if (double.TryParse(normalized, NumberStyles.Float, CultureInfo.InvariantCulture, out result))
-                return true;
-
-            return false;
-        }
-
-        /// <summary>
-        /// Normalizes number string by removing thousands separators and handling spaces
-        /// </summary>
         private string NormalizeNumber(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
                 return input;
 
-            // Remove all spaces (common thousands separator)
-            input = input.Replace(" ", "");
+            // Supprimer les séparateurs de milliers courants
+            string result = input.Replace(" ", "")
+                                 .Replace("'", "")
+                                 .Replace("_", "");
 
-            // Remove other common thousands separators
-            input = input.Replace("'", "");
-            input = input.Replace("_", "");
+            // Remplacer la virgule par un point pour le séparateur décimal
+            result = result.Replace(",", ".");
 
-            // Handle multiple decimal separators
-            int lastDot = input.LastIndexOf('.');
-            int lastComma = input.LastIndexOf(',');
-
-            // If both . and , are present, treat the last one as decimal separator
-            if (lastDot > -1 && lastComma > -1)
+            // Gérer le cas où il y a plusieurs points
+            // Garder uniquement le dernier point comme séparateur décimal
+            int dotCount = result.Count(c => c == '.');
+            if (dotCount > 1)
             {
-                if (lastDot > lastComma)
-                {
-                    // Dot is the decimal separator, remove commas (thousands separators)
-                    input = input.Replace(",", "");
-                }
-                else
-                {
-                    // Comma is the decimal separator, remove dots (thousands separators)
-                    input = input.Replace(".", "");
-                    // Replace comma with dot for invariant culture
-                    input = input.Replace(",", ".");
-                }
+                int lastIndex = result.LastIndexOf('.');
+                result = result.Replace(".", "");
+                result = result.Insert(lastIndex - (dotCount - 1), ".");
             }
-            else if (lastComma > -1 && lastDot == -1)
-            {
-                // Only comma present - could be decimal or thousands separator
-                int commaCount = input.Count(c => c == ',');
-                if (commaCount == 1)
-                {
-                    // Single comma - likely decimal separator
-                    input = input.Replace(",", ".");
-                }
-                else
-                {
-                    // Multiple commas - treat as thousands separators
-                    input = input.Replace(",", "");
-                }
-            }
-            // If only dot present, it's already in correct format for invariant culture
 
-            return input;
+            return result;
         }
     }
 }
