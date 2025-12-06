@@ -37,11 +37,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task6", "Task6", "{0FECD9C0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task7", "Task7", "{CDE7AE6B-DE51-4614-8479-9C096B1D43C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyuiu.Programmiste.Sprint6.Task3.V18. Lib", "Tyuiu.Programmiste.Sprint6.Task3.V18. Lib\Tyuiu.Programmiste.Sprint6.Task3.V18. Lib.csproj", "{5238EBFD-71D4-46F0-AF4B-F0D8C71E85F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyuiu.Programmiste.Sprint6.Task3.V18.Lib", "Tyuiu.Programmiste.Sprint6.Task3.V18. Lib\Tyuiu.Programmiste.Sprint6.Task3.V18.Lib.csproj", "{5238EBFD-71D4-46F0-AF4B-F0D8C71E85F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyuiu.Programmiste.Sprint6.Task3.V18. Test", "Tyuiu.Programmiste.Sprint6.Task3.V18. Test\Tyuiu.Programmiste.Sprint6.Task3.V18. Test.csproj", "{33615DC3-65D6-40A0-8206-3CC43D184DAB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyuiu.Programmiste.Sprint6.Task3.V18.Test", "Tyuiu.Programmiste.Sprint6.Task3.V18. Test\Tyuiu.Programmiste.Sprint6.Task3.V18.Test.csproj", "{33615DC3-65D6-40A0-8206-3CC43D184DAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyuiu.Programmiste.Sprint6.Task3.V18.", "Tyuiu.Programmiste.Sprint6.Task3.V18\Tyuiu.Programmiste.Sprint6.Task3.V18..csproj", "{DED9759D-E388-404C-BCF2-FCBD3E6E1A28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyuiu.Programmiste.Sprint6.Task3.V18", "Tyuiu.Programmiste.Sprint6.Task3.V18\Tyuiu.Programmiste.Sprint6.Task3.V18.csproj", "{DED9759D-E388-404C-BCF2-FCBD3E6E1A28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

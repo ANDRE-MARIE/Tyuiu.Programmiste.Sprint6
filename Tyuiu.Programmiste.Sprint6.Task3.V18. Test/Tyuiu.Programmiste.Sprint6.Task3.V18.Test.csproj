@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tyuiu.Programmiste.Sprint6.Task3.V18. Lib\Tyuiu.Programmiste.Sprint6.Task3.V18. Lib.csproj" />
+    <ProjectReference Include="..\Tyuiu.Programmiste.Sprint6.Task3.V18. Lib\Tyuiu.Programmiste.Sprint6.Task3.V18.Lib.csproj" />
   </ItemGroup>
 
   <ItemGroup>
