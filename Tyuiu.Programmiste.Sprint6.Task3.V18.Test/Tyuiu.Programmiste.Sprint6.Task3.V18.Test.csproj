@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>Tyuiu.Programmiste.Sprint6.Task3.V18._Test</RootNamespace>
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -24,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tyuiu.Programmiste.Sprint6.Task3.V18. Lib\Tyuiu.Programmiste.Sprint6.Task3.V18.Lib.csproj" />
+    <ProjectReference Include="..\Tyuiu.Programmiste.Sprint6.Task3.V18.Lib\Tyuiu.Programmiste.Sprint6.Task3.V18.Lib.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,13 +1,13 @@
 ﻿
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tyuiu.Programmiste.Sprint6.Task3.V18._Lib;
 
-namespace Tyuiu.Programmiste.Sprint6.Task3.V18._Test
+using Tyuiu.Programmiste.Sprint6.Task3.V18.Lib;
+namespace Tyuiu.Programmiste.Sprint6.Task3.V18.Test
 {
     [TestClass]
-    public class DataServiceTest
+    public sealed class DataServiceTest
     {
         [TestMethod]
+        
         public void ValidCalculate()
         {
             DataService ds = new DataService();

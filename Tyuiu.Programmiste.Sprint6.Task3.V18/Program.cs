@@ -1,13 +1,10 @@
-﻿using System;
-using System.IO;
+﻿
 
-using Tyuiu.Programmiste.Sprint6.Task3.V18._Lib;
-
+using Tyuiu.Programmiste.Sprint6.Task3.V18.Lib;
 internal class Program
 {
     private static void Main(string[] args)
     {
-
         DataService ds = new DataService();
 
         // Utiliser un chemin dans le répertoire temporaire de l'utilisateur (toujours existant)
@@ -87,4 +84,3 @@ internal class Program
         Console.ReadKey();
     }
 }
-
